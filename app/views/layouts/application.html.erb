@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlogOnRails</title>
+    <title>Blog on Rails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <!-- <a href="/">Home</a> -->
+    <%= link_to 'Home', root_path %>
+    |
+    <%= link_to 'New Post', new_post_path %>
+    |
+    <%= link_to 'All Posts', posts_path %>
+    |
+   
+    <hr>
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
