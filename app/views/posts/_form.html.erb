@@ -7,13 +7,32 @@
 <% end %>
 
 <%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+
+  <div class="form-group">
+  Title:
+  <%= f.text_area(
+    :title,
+    cols: 50,
+    rows:1,
+    placeholder: "Post title",
+    class: "form-control"
+    ) %>
+   
   </div>
   <div>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+  Body:
+  <%= f.text_area(
+  :body,
+  cols: 50,
+  rows: 5,
+  placeholder: "Create a new post",
+  class: "form-control"
+  ) %>
   </div>
-  <%= f.submit %>
+  <br>
+  <%= f.submit class: 'btn btn-outline-primary' %>
+</div>
+
+   
+  
 <% end %>

@@ -1,9 +1,13 @@
-<h1>All Posts</h1>
 
-<% @posts.each do |post| %>
-  <div>
-    <h2><%= link_to post.title, post_path(post) %></h2>
-    <p><%= post.body %></p>
-    <hr>
-  </div>
-<% end %>
+<% @posts.each_slice(3).to_a.each do |chunk| %>
+  <div class="row row-centered">
+    <% chunk.each do |post| %>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-centered">
+        <div class="blogbox">
+        <h4><%= link_to post.title, post_path(post) %></h2>
+        <p><%= post.body %></p>
+        </div>
+      </div>
+    <% end %>
+ </div>
+ <% end %>

@@ -2,28 +2,46 @@
 <html>
   <head>
     <title>Blog on Rails</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+   <%= csrf_meta_tags %> 
+   <%= csp_meta_tag %> 
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+ <%= stylesheet_link_tag    'application', media: 'all' %> 
+ <%= javascript_include_tag 'application' %> 
+
   </head>
 
   <body>
-    <!-- <a href="/">Home</a> -->
-    <%= link_to 'Home', root_path %>
-    |
-    <%= link_to 'New Post', new_post_path %>
-    |
-    <%= link_to 'All Posts', posts_path %>
-    |
-   
-    <hr>
-    <% flash.each do |type, message| %>
+  
+  <div class="container-fluid">
+    
+  <header>
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><div class="blogtitle" >Blog on Rails</div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link"><%= link_to ' Home ', root_path %></a></li>
+        <li class="nav-item"><a class="nav-link"><%= link_to ' New Post ', new_post_path %></a></li>
+      </ul>
+  </div>
+</nav>
+    </header>
+
+    <main class="container-fluid">
+      <% flash.each do |type, message| %>
       <div class="flash flash-<%= type %>">
-        <%= message %>
-      </div>
-    <% end %>
-    <%= yield %>
+          <%= message %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+
   </body>
 </html>
+
+
+

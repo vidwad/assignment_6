@@ -38,6 +38,7 @@ gem 'cowsay'
 gem 'pry-rails'
 gem 'faker'
 gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
