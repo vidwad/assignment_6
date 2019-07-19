@@ -1,0 +1,7 @@
+<%= form_for [@post, @comment] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, placeholder: "What's on your mind?", class: "form-control" %>
+  </div>
+
+  <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+<% end %>

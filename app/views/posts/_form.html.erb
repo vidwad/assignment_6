@@ -1,38 +1,13 @@
-<% if @post.errors.any? %>
-  <ul>
-    <% @post.errors.full_messages.each do |msg|%>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
   <div class="form-group">
-  Title:
-  <%= f.text_area(
-    :title,
-    cols: 50,
-    rows:1,
-    placeholder: "Post title",
-    class: "form-control"
-    ) %>
-   
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
   </div>
-  <div>
-  Body:
-  <%= f.text_area(
-  :body,
-  cols: 50,
-  rows: 5,
-  placeholder: "Create a new post",
-  class: "form-control"
-  ) %>
-  </div>
-  <br>
-  <%= f.submit class: 'btn btn-outline-primary' %>
-</div>
 
-   
-  
+  <%= f.submit class: "btn btn-outline-primary" %>
 <% end %>

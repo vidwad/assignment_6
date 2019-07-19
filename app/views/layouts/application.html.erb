@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog on Rails</title>
-   <%= csrf_meta_tags %> 
-   <%= csp_meta_tag %> 
+    <title>BlogOnRails</title>
+    <%= csrf_meta_tags %>
 
- <%= stylesheet_link_tag    'application', media: 'all' %> 
- <%= javascript_include_tag 'application' %> 
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  
-  <div class="container-fluid">
-    
-  <header>
-      
-      
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/"><div class="blogtitle" >Blog on Rails</div></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link"><%= link_to ' Home ', root_path %></a></li>
-        <li class="nav-item"><a class="nav-link"><%= link_to ' New Post ', new_post_path %></a></li>
-      </ul>
-  </div>
-</nav>
-    </header>
 
-    <main class="container-fluid">
+    <nav class="navbar navbar-expand sticky-top navbar-outline-primary bg-light mb-4">
+      <%= link_to "Blog On Rails", root_path, class: "navbar-brand" %>
+
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav ml-auto">
+          <%= link_to "Home", root_path, class: "nav-item nav-link" %>
+          <%= link_to "New Post", new_post_path, class: "nav-item nav-link" %>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid">
       <% flash.each do |type, message| %>
-      <div class="flash flash-<%= type %>">
+        <div class="alert alert-<%= type == "alert" ? "danger" : "success" %>" role="alert">
           <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       <% end %>
-      <%= yield %>
-    </main>
 
+      <%= yield %>
+    </div>
   </body>
 </html>
-
-
-

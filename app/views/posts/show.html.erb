@@ -1,57 +1,27 @@
-<h4><%= @post.title %></h1>
+<h1><%= @post.title %></h1>
+
 <p><%= @post.body %></p>
-<p><%= time_ago_in_words(@post.created_at) %> ago</p>
 
+<p><small>Posted <%= time_ago_in_words @post.created_at %> ago</small></p>
 
-<%= link_to "Edit", edit_post_path(@post), class: 'btn btn-outline-primary'%>
-<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-outline-primary' %>
+<div class="owner-controls mb-4">
+  <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>
+  <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-outline-primary" %>
+</div>
 
-<hr />
-<h4> Comment </h4>
-  <%= form_with(model: [@post, @comment], local: true) do |f| %>
-  <% if @comment.errors.any? %>
-    <ul>
-      <% @comment.errors.full_messages.each do |msg|%>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
+<h4>Comment</h4>
 
-  <div class="form-group">
-    <%= f.text_area(
-    :body,
-    cols: 50,
-    rows: 5,
-    placeholder: "Whats on your mind?",
-    class: "form-control"
-    ) %>
-  </div>
-  
-  <%= f.submit class: 'btn btn-outline-primary' %>
-<% end %>
+<%= render 'comments/form' %>
 
-<hr />
-
-<ul class="comment-list">
+<ul class="list-unstyled mt-4">
   <% @comments.each do |comment| %>
-    <li>
-      <p>
-        <%= comment.body %> <br />
+    <li class="media mb-2">
+      <div class="media-body">
+        <%= comment.body %> <br/>
         <small>
-          <%= link_to(
-            "Delete",
-            post_comment_path(@post, comment),
-            method: :delete,
-            data: {
-              confirm: "Are you sure?"
-            }
-          ) %>
+          Commented <%= time_ago_in_words comment.created_at %> ago •
+          <%= link_to 'Delete', comment_path(comment), method: :delete %>
         </small>
-        |
-        <small>
-          Commented <%= time_ago_in_words(comment.created_at) %> ago
-        </small>
-      </p>
     </li>
   <% end %>
 </ul>
