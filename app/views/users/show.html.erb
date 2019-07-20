@@ -1,20 +1,19 @@
 <h1>Update Password</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => {:action => "updatepswd"} do |f| %>
 
 <% if @user.errors.any? %>
 <p>
 <%= @user.errors.full_messages.join(', ') %>
 </p>
 <% end %>
- <div class="form-group">
-<%= f.label :name %>
-<%= f.text_field :name, class: "form-control"  %>
+
+<br>
+<div>
+<h4>User: <%= @user.name %> | Email: <%= @user.email %></h4>
 </div>
-<div class="form-group">
-<%= f.label :email %>
-<%= f.email_field :email, class: "form-control"  %>
-</div>
+<br>
+
 <div class="form-group">
 <%= f.label :current_password %>
 <%= f.password_field :current_password, class: "form-control"  %>

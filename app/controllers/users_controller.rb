@@ -15,52 +15,60 @@ class UsersController < ApplicationController
     end
     end
 
-              def edit
-                @user = User.find(params[:id])
-                # @user = current_user
-               
-                # puts @user
-              end
+      def edit
+        @user = User.find(params[:id])
+      end
 
 
-              def update
-                @user = User.find(params[:id])
-               
-                  if @user.update user_params
-                    flash[:success] = "Successfully updated User"
-                    render :edit
-                    # redirect_to @user
-                  else
-                    flash.now[:alert] = @post.errors.full_messages.join(", ")
-                    render :edit
-                  end
-                end
+      def update
+        @user = User.find(params[:id])
+        
+          if @user.update user_params
+            flash[:success] = "Successfully updated User"
+            render :edit
+          else
+            flash.now[:alert] = @post.errors.full_messages.join(", ")
+            render :edit
+          end
+        end
 
 
-                def show
-                  @user = User.find(params[:id])
-                end
+      def show
+        @user = current_user
+        @user.password = ""
+      end
 
 
-                def updatepswd
-                  @user = User.find(params[:id])
+      def updatepswd
+        @user = User.find(params[:id])
 
-                
-                    if (params[:current_password] == current_user.password) && (@user.update user_params)
-                      flash[:success] = "Successfully updated User Password"
-                      render :edit
-                     
-                    else
-                      flash.now[:alert] = @post.errors.full_messages.join(", ")
-                      render :edit
-                    end
-                  end
+        if (@user.password == current_user.password) 
+        
+          @user.password = user_params[:password]
+          @user.password_confirmation = user_params[:password_confirmation]
+
+          if @user.save!
+
+          flash[:success] = "Successfully updated User Password"
+          render :edit
+          
+          else
+          flash.now[:alert] = @user.errors.full_messages.join(", ")
+          render :edit
+          end
+
+        else
+        flash.now[:alert] = @user.errors.full_messages.join(", ")
+        render :edit
+        end
+
+      end
   
     
     private
     
     def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :old_password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
     end
          
 
