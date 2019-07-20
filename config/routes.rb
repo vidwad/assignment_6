@@ -4,4 +4,12 @@ Rails.application.routes.draw do
   end
 
   root to: "posts#index"
+
+  
+  resources :users
+
+  resource :session, only: [:new, :create, :destroy]
+
+  patch '/users/pswd/:id/', {to: 'users#updatepswd' , as: :update_pswd}
+
 end

@@ -40,6 +40,7 @@ gem 'cowsay'
 gem 'pry-rails'
 gem 'pry-doc', '~> 0.12.0'
 gem 'faker'
+gem 'cancancan'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
