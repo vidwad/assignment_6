@@ -14,14 +14,19 @@
 <%= render 'comments/form' %>
 
 <ul class="list-unstyled mt-4">
+ 
   <% @comments.each do |comment| %>
     <li class="media mb-2">
+
       <div class="media-body">
         <%= comment.body %> <br/>
         <small>
           Commented <%= time_ago_in_words comment.created_at %> ago •
           <%= link_to 'Delete', comment_path(comment), method: :delete %>
         </small>
+        </div>
+        
     </li>
   <% end %>
+
 </ul>

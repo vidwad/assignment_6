@@ -1,9 +1,8 @@
-# frozen_string_literal: true
 
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+ 
     def initialize(user)
       user ||= User.new 
       
@@ -21,9 +20,7 @@ class Ability
       comment.user == user
       end
       
-
-
     end
-  end
+ 
 
 end

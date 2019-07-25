@@ -30,6 +30,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def find_comment
     @comment = Comment.find params[:id] if params[:id].present?
   end
@@ -41,4 +42,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
+  
 end
