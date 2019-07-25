@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :posts do
+    resources :comments, shallow: true, only: [:create, :destroy]
+  end
+
+  root to: "posts#index"
+
+  
+  resources :users
+  
+
+  resource :session, only: [:new, :create, :destroy]
+
+  patch '/users/pswd/:id/', {to: 'users#updatepswd' , as: :update_pswd}
+
 end

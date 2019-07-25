@@ -1,0 +1,16 @@
+<div class="row">
+  
+  <% @posts.each do |post| %>
+   
+    <div class="col-sm-6 col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title text-truncate"><%= link_to post.title, post_path(post) %></h5>
+          <p class="card-text text-truncate"><%= post.body %></p>
+        </div>
+      </div>
+    </div>
+  
+  <% end %>
+
+</div>
